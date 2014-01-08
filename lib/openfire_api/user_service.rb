@@ -20,6 +20,7 @@ class OpenfireApi::UserService
   end
 
   def delete_user!(opts)
+    binding.pry
     submit_request(opts.merge(:type => :delete))
   end
 
@@ -59,7 +60,7 @@ private
 
   def submit_http_request(uri, params)
     res = Net::HTTP.start(uri.host, uri.port) do |http|
-      http.get("#{uri.path}?#{params}")
+      http.get("#{uri.path}?#{URI.escape(params)}")
     end
     return res.body
   rescue Exception => e
