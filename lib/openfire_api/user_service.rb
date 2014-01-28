@@ -20,7 +20,6 @@ class OpenfireApi::UserService
   end
 
   def delete_user!(opts)
-    binding.pry
     submit_request(opts.merge(:type => :delete))
   end
 
